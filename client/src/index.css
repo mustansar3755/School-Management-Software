@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0f1f3d;          /* deep navy: sidebar, headings */
+  --color-brand: #2563eb;        /* primary blue: buttons, links */
+  --color-brand-dark: #1d4ed8;   /* hover */
+  --color-brand-soft: #e8f0fe;   /* halka blue background */
+  --color-chalk: #f4f7fb;        /* page background */
+  --color-line: #e2e8f0;         /* borders */
+  --color-muted: #64748b;        /* secondary text */
+  --color-amber: #f5b83d;        /* highlight: active menu, logo */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: var(--color-chalk);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
