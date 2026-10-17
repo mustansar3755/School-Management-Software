@@ -15,7 +15,15 @@ const links = [
       { to: "/students/add", label: "Add Student" },
     ],
   },
-  { to: "/teachers", label: "Teachers", icon: GraduationCap },
+  {
+  to: "/teachers",
+  label: "Teachers",
+  icon: GraduationCap,
+  children: [
+    { to: "/teachers", label: "All Teachers" },
+    { to: "/teachers/add", label: "Add Teacher" },
+  ],
+},
   { to: "/attendance", label: "Attendance", icon: CalendarCheck },
   { to: "/fees", label: "Fees", icon: Wallet },
   { to: "/diary", label: "Daily Diary", icon: NotebookPen },
