@@ -8,6 +8,7 @@ import AddStudent from "./pages/AddStudent";
 import Teachers from "./pages/Teachers";
 import AddTeacher from "./pages/AddTeacher";
 import Attendance from "./pages/Attendance";
+import Fees from "./pages/Fees";
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/teachers/add" element={<AddTeacher />} />
         {/* OTHERS ROUTES */}
         <Route path="/attendance" element={<Attendance />} />
+        <Route path="/fees" element={<Fees />} />
       </Route>
     </Routes>
   );
