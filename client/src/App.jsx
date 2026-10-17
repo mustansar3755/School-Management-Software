@@ -9,6 +9,7 @@ import Teachers from "./pages/Teachers";
 import AddTeacher from "./pages/AddTeacher";
 import Attendance from "./pages/Attendance";
 import Fees from "./pages/Fees";
+import Diary from "./pages/Diary";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
         {/* OTHERS ROUTES */}
         <Route path="/attendance" element={<Attendance />} />
         <Route path="/fees" element={<Fees />} />
+        <Route path="/diary" element={<Diary />} />
       </Route>
     </Routes>
   );
