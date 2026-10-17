@@ -1,7 +1,7 @@
 export default function Input({ label, icon: Icon, ...props }) {
   return (
     <label className="block">
-      <span className="mb-1.5 block text-sm font-medium">{label}</span>
+     {label && <span className="mb-1.5 block text-sm font-medium">{label}</span>}
 
       <span className="relative block">
         {Icon && <Icon size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" />}

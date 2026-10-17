@@ -1,11 +1,20 @@
 import { NavLink } from "react-router-dom";
 import { LayoutDashboard, Users, GraduationCap, CalendarCheck, Wallet, NotebookPen, X } from "lucide-react";
 import { FaGraduationCap } from "react-icons/fa6";
+import SidebarGroup from "./SidebarGroup";
 
-// Menu ki list. Naya page add karna ho to bas yahan ek line add karo.
+// Menu ki list. Jis item mein "children" ho wo dropdown ban jata hai.
 const links = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard },
-  { to: "/students", label: "Students", icon: Users },
+  {
+    to: "/students",
+    label: "Students",
+    icon: Users,
+    children: [
+      { to: "/students", label: "All Students" },
+      { to: "/students/add", label: "Add Student" },
+    ],
+  },
   { to: "/teachers", label: "Teachers", icon: GraduationCap },
   { to: "/attendance", label: "Attendance", icon: CalendarCheck },
   { to: "/fees", label: "Fees", icon: Wallet },
@@ -13,7 +22,6 @@ const links = [
 ];
 
 export default function Sidebar({ open, onClose }) {
-  // Sidebar ka andar ka hissa. Desktop aur mobile dono mein yahi use hota hai.
   const content = (
     <>
       <div className="flex items-center gap-2.5 px-5 py-5">
@@ -24,24 +32,32 @@ export default function Sidebar({ open, onClose }) {
       </div>
 
       <nav className="space-y-1 px-3">
-        {links.map(({ to, label, icon: Icon }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={to === "/"}
-            onClick={onClose}
-            className={({ isActive }) =>
-              `flex items-center gap-3 rounded-lg border-l-[3px] px-3 py-2.5 text-sm font-medium transition ${
-                isActive
-                  ? "border-amber bg-white/10 text-white"
-                  : "border-transparent text-white/70 hover:bg-white/5 hover:text-white"
-              }`
-            }
-          >
-            <Icon size={18} />
-            {label}
-          </NavLink>
-        ))}
+        {links.map(({ to, label, icon: Icon, children }) => {
+          // Dropdown wala item
+          if (children) {
+            return <SidebarGroup key={to} label={label} icon={Icon} base={to} items={children} onNavigate={onClose} />;
+          }
+
+          // Aam single link
+          return (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === "/"}
+              onClick={onClose}
+              className={({ isActive }) =>
+                `flex items-center gap-3 rounded-lg border-l-[3px] px-3 py-2.5 text-sm font-medium transition ${
+                  isActive
+                    ? "border-amber bg-white/10 text-white"
+                    : "border-transparent text-white/70 hover:bg-white/5 hover:text-white"
+                }`
+              }
+            >
+              <Icon size={18} />
+              {label}
+            </NavLink>
+          );
+        })}
       </nav>
     </>
   );
