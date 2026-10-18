@@ -4,6 +4,9 @@ import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import rateLimit from "express-rate-limit";
 
+import authRoutes from "./routes/authRoutes.js";
+import { notFound, errorHandler } from "./middleware/errorHandler.js";
+
 const app = express();
 
 // Security headers lagane ke liye
@@ -37,6 +40,11 @@ app.get("/api/health", (req, res) => {
   res.json({ success: true, message: "API chal rahi hai" });
 });
 
-// Routes yahan aayenge (Step 3 se) aur error handler sab se last mein
+// Routes (baqi modules Step 4 se aate jayenge)
+app.use("/api/auth", authRoutes);
+
+// Sab se last mein: pehle 404, phir central error handler
+app.use(notFound);
+app.use(errorHandler);
 
 export default app;
